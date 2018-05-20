@@ -13,28 +13,30 @@ class Album extends Component {
     this.state = {
       album: album,
       currentSong: album.songs[0],
-      isPlaying: false
+      isPlaying: false,
+      showIcon: false,
+      currentIndex: 0
     };
 
     this.audioElement = document.createElement('audio');
     this.audioElement.src = album.songs[0].audioSrc;
-    
+
 
   }
 
   play() {
     this.audioElement.play();
-    this.setState({isPlaying: true});
+    this.setState({ isPlaying: true });
   }
 
   pause() {
     this.audioElement.pause();
-    this.setState({ isPlaying: false});
+    this.setState({ isPlaying: false });
   }
 
   setSong(song) {
     this.audioElement.src = song.audioSrc;
-    this.setState({ currentSong: song});
+    this.setState({ currentSong: song });
   }
 
   handleSongClick(song) {
@@ -45,6 +47,15 @@ class Album extends Component {
       if (!isSameSong) { this.setSong(song); }
       this.play();
     }
+  }
+
+  handleMouseOver(index) {
+    this.setState({ showIcon: true, currentIndex: index });
+
+  }
+
+  handleMouseLeave() {
+    this.setState({ showIcon: false });
   }
 
   render() {
@@ -66,8 +77,20 @@ class Album extends Component {
           </colgroup>
           <tbody>
             {
-              this.state.album.songs.map((song, index) => <tr className="song" key={index} onClick={() => this.handleSongClick(song)}><td>{index + 1}</td><td>{song.title}</td><td>{song.duration}</td></tr>)
-        
+              this.state.album.songs.map((song, index) =>
+                <tr className="song" key={index}
+                  onClick={() => this.handleSongClick(song)}
+                  onMouseEnter={() => this.handleMouseOver(index)}
+                  onMouseLeave={() => this.handleMouseLeave()}>
+                  <td>
+                    <span className={this.state.isPlaying && (this.state.currentSong === song) ? 'icon ion-md-pause' : 'icon ion-md-play'}
+                      style={{ display: this.state.showIcon ? 'inline' : 'none' }}></span>
+                    <span style={{ display: this.state.showIcon ? 'none' : 'inline' }}>{index + 1}</span>
+                  </td>
+                  <td>{song.title}</td>
+                  <td>{song.duration}</td>
+                </tr>)
+
             }
           </tbody>
         </table>
