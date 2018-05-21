@@ -13,9 +13,7 @@ class Album extends Component {
     this.state = {
       album: album,
       currentSong: album.songs[0],
-      isPlaying: false,
-      showIcon: false,
-      currentIndex: 0
+      isPlaying: false
     };
 
     this.audioElement = document.createElement('audio');
@@ -50,12 +48,19 @@ class Album extends Component {
   }
 
   handleMouseOver(index) {
-    this.setState({ showIcon: true, currentIndex: index });
-
+   
+    let iconSpan = document.querySelector("#table-body").childNodes[index].childNodes[0].childNodes[0];
+    let numberSpan = document.querySelector("#table-body").childNodes[index].childNodes[0].childNodes[1];
+    iconSpan.style.display = 'inline';
+    numberSpan.style.display = 'none';
   }
 
-  handleMouseLeave() {
-    this.setState({ showIcon: false });
+  handleMouseLeave(index) {
+    
+    let iconSpan = document.querySelector("#table-body").childNodes[index].childNodes[0].childNodes[0];
+    let numberSpan = document.querySelector("#table-body").childNodes[index].childNodes[0].childNodes[1];
+    iconSpan.style.display = 'none';
+    numberSpan.style.display = 'inline';
   }
 
   render() {
@@ -75,17 +80,17 @@ class Album extends Component {
             <col id="song-title-column" />
             <col id="song-duration-column" />
           </colgroup>
-          <tbody>
+          <tbody id="table-body">
             {
               this.state.album.songs.map((song, index) =>
                 <tr className="song" key={index}
                   onClick={() => this.handleSongClick(song)}
                   onMouseEnter={() => this.handleMouseOver(index)}
-                  onMouseLeave={() => this.handleMouseLeave()}>
+                  onMouseLeave={() => this.handleMouseLeave(index)}>
                   <td>
                     <span className={this.state.isPlaying && (this.state.currentSong === song) ? 'icon ion-md-pause' : 'icon ion-md-play'}
-                      style={{ display: this.state.showIcon ? 'inline' : 'none' }}></span>
-                    <span style={{ display: this.state.showIcon ? 'none' : 'inline' }}>{index + 1}</span>
+                      style={{display: 'none'}}></span>
+                    <span style={{ display: 'inline' }}>{index + 1}</span>
                   </td>
                   <td>{song.title}</td>
                   <td>{song.duration}</td>
