@@ -43,7 +43,10 @@ class Album extends Component {
     } else {
       let minutes = Math.floor(timeInSeconds / 60);
       //let seconds = Number.parseFloat(timeInSeconds - (minutes * 60)).toPrecision(2);
-      let seconds =Math.trunc(timeInSeconds - (minutes * 60));
+      let seconds = Math.trunc(timeInSeconds - (minutes * 60));
+      if (seconds.toString().length == 1) {
+        seconds = "0" + seconds;
+      }
       let resultString = minutes + ":" + seconds;
       return resultString;  
     }
