@@ -1,6 +1,49 @@
-.App {
-  text-align: center;
+.content {
+  color: #000000;
+  padding-bottom: 1%;
+  margin: auto;
+  
 }
+
+
+
+.color {
+  background-color: green;
+}
+
+
+.main_title {
+  color:#c134a3;
+  padding-bottom: 1%;
+  margin: auto;
+  font-size: 60px;
+  font-weight: bolder
+}
+
+
+.indent {
+  color:#c134a3;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 20px;
+  padding-top: 5%;
+  padding-left: 10%;
+}
+
+.image {
+  margin:auto;
+  text-align: right;
+  padding-left: 70%;
+}
+
+
+.library-button{
+  padding-top: 2%;
+  padding-bottom: 10%;
+   
+}
+
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -25,4 +68,24 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+
+/* Library */
+
+.album-placement {
+  font-weight: 700;
+  text-align: center;
+  padding-left: 33.3%;
+  padding-right: 33.3%;
+}
+
+
+p {
+  text-align: center;
+}
+
+
+.album-covers {
+  height: 200px;
 }
