@@ -38,7 +38,7 @@ const Landing = () => (
       <div className="text-center"><img src="http://res.cloudinary.com/dafrxcavi/image/upload/v1528473006/pink_headphones_dlusc9.jpg" className="rounded" alt="girl with pink headphones" /></div>
     </div>
 
-    {/*Music library button in this column. */}
+    {/*Music library button in this column.*/}
     <div className="col-md-12">
       <div className="row library-button">
         {/* Bootstrap for music library button.  */}

@@ -9,7 +9,7 @@ class Library extends Component {
   render() {
 
     return (
-      // All content will go in one Bootstrap column
+      //  All content will go in one Bootstrap column
       <div ClassName="col-md-12">
         <section className='library'>
           {
